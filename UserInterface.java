@@ -78,7 +78,7 @@ public class UserInterface {
     public String getDeliveryDate() {
         String deliveryDate = "";
         
-        deliveryDate = getStringWithPrompt("delivery date");
+        deliveryDate = inputStringWithPrompt("delivery date");
         
         return deliveryDate;
     }
@@ -86,10 +86,10 @@ public class UserInterface {
     public Address getAddressData() {
         Address address = new Address();
         
-        address.setStreet(getStringWithPrompt("street name and number"));
-        address.setCity(getStringWithPrompt("city name"));
-        address.setZipCode(getStringWithPrompt("ZIP code"));
-        address.setState(getStringWithPrompt("State"));
+        address.setStreet(inputStringWithPrompt("street name and number"));
+        address.setCity(inputStringWithPrompt("city name"));
+        address.setZipCode(inputStringWithPrompt("ZIP code"));
+        address.setState(inputStringWithPrompt("State"));
         
         return address;
     }
@@ -97,13 +97,13 @@ public class UserInterface {
     public Customer getCustomerData() {
         Customer customer = new Customer();
         
-        customer.setName(getStringWithPrompt("customer's name"));
-        customer.setPhoneNumber(getStringWithPrompt("customer's phone number"));
+        customer.setName(inputStringWithPrompt("customer's name"));
+        customer.setPhoneNumber(inputStringWithPrompt("customer's phone number"));
         
         return customer;
     }
 
-    private String getStringWithPrompt(String prompt) {
+    private String inputStringWithPrompt(String prompt) {
         String string = "";
         
         System.out.println("Enter " + prompt + ": ");
@@ -167,5 +167,19 @@ public class UserInterface {
         for (Order order : orders) {
             displayOrder(order);
         }
+    }
+
+    public String inputDeliveryDate() {
+        String deliveryDate = "";
+        deliveryDate = inputStringWithPrompt("delivery date (mm/dd/yyyy)");
+        
+        return deliveryDate;
+    }
+
+    public String inputBakingDate() {
+        String bakingDate = "";
+        bakingDate = inputStringWithPrompt("baking date (mm/dd/yyyy)");
+        
+        return bakingDate;
     }
 }

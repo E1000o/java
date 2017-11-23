@@ -1,3 +1,5 @@
+import java.util.Calendar;
+
 public class Order {
     private Dozen cookieTypes;
     private Customer customer;
@@ -14,10 +16,42 @@ public class Order {
     }
     
     public String getBakingDate() {
-        // TEMPORARY
-        return this.deliveryDate;
+        int deliveryMonth = 0;
+        int deliveryDay = 0;
+        int deliveryYear = 0;
+        int bakingMonth = 0;
+        int bakingDay = 0;
+        int bakingYear = 0;
+        String bakingMonthPrefix = "";
+        String bakingDayPrefix = "";
+        String bakingDate = "";
+        String[] dateElements = this.deliveryDate.split("/");
+        Calendar calendar = Calendar.getInstance();
+        
+        deliveryMonth = Integer.parseInt(dateElements[0]) - 1;
+        deliveryDay = Integer.parseInt(dateElements[1]);
+        deliveryYear = Integer.parseInt(dateElements[2]);
+        
+        calendar.set(deliveryYear, deliveryMonth, deliveryDay);
+        calendar.add(Calendar.DAY_OF_MONTH, -1);
+        
+        bakingMonth = calendar.get(Calendar.MONTH) + 1;
+        bakingDay = calendar.get(Calendar.DAY_OF_MONTH);
+        bakingYear = calendar.get(Calendar.YEAR);
+        
+        if (bakingMonth < 10) {
+            bakingMonthPrefix = "0";
+        }
+        
+        if (bakingDay < 10) {
+            bakingDayPrefix = "0";
+        }
+        
+        
+        bakingDate = bakingMonthPrefix + bakingMonth + "/" + bakingDayPrefix + bakingDay + "/" + bakingYear;
+        
+        return bakingDate;
     }
-//    +toString()??
 
     public Dozen getCookieTypes() {
         return cookieTypes;

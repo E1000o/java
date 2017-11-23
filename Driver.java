@@ -30,16 +30,16 @@ public class Driver {
 
     private static void printDeliveryList() {
         ArrayList<Order> todaysShippingList = new ArrayList<Order>();
-        String deliveryDate = "22/11/2017";
+        String deliveryDate = userInterface.inputDeliveryDate();
 
         todaysShippingList = orderSystem.compileDeliveryList(deliveryDate);
         userInterface.displayDeliveryList(todaysShippingList);
     }
 
     private static void printBakingList() {
-        String date = "22/11/2017";
+        String bakingDate = userInterface.inputBakingDate();
         Dozen todaysBakingList = new Dozen();
-        todaysBakingList = orderSystem.compileBakingList(date);
+        todaysBakingList = orderSystem.compileBakingList(bakingDate);
         userInterface.displayCookieTypes(todaysBakingList);
     }
 
